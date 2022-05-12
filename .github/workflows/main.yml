@@ -1,0 +1,70 @@
+
+name: CI
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v3.1.2
+      - name: Git init 
+        run: |
+          git config --global user.email xxx.com
+          git config --global user.name robot
+
+      - name: Soluation1
+        run: python bSpider.py 3 1 BV1K3411K7ij
+      - name: LFS1
+        run: |
+          find ./main/ -size +100M | while read i;
+          do
+          git lfs track "$i" ;
+          git add "$i";
+          git commit -m "update1" -a;
+          git push;
+          done 
+      - name: Commit and Push 1
+        run: |
+          git add main context.json pic.png
+          git commit -m "update1" -a
+          git push
+    
+
+      - name: Soluation2
+        run: python bSpider.py 3 2 BV1K3411K7ij
+      - name: LFS2
+        run: |
+          find ./main/ -size +100M | while read i;
+          do
+          git lfs track "$i" ;
+          git add "$i";
+          git commit -m "update2" -a;
+          git push;
+          done 
+      - name: Commit and Push 2
+        run: |
+          git add main context.json pic.png
+          git commit -m "update2" -a
+          git push
+    
+
+      - name: Soluation3
+        run: python bSpider.py 3 3 BV1K3411K7ij
+      - name: LFS3
+        run: |
+          find ./main/ -size +100M | while read i;
+          do
+          git lfs track "$i" ;
+          git add "$i";
+          git commit -m "update3" -a;
+          git push;
+          done 
+      - name: Commit and Push 3
+        run: |
+          git add main context.json pic.png
+          git commit -m "update3" -a
+          git push
+    
+    
